@@ -49,7 +49,6 @@ type Service struct {
 
 	Additional []Additional `json:"additional,omitempty"`
 
-	// TODO
 	Partners []struct {
 		Description string `json:"description"`
 		PartnerType string `json:"partner_type"`

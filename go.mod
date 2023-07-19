@@ -1,6 +1,6 @@
 module dev.freespoke.com/go-package-tracking
 
-go 1.20
+go 1.18
 
 require (
 	dev.freespoke.com/core v1.32.1
