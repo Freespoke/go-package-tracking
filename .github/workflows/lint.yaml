@@ -20,11 +20,11 @@ jobs:
                 ~/.cache/pre-commit/
             key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
 
-        - name: Configure git for private modules
-          env:
-            TOKEN: ${{ secrets.BOT_TOKEN }}
-            USERNAME: ${{ secrets.BOT_USERNAME }}
-          run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
+        # - name: Configure git for private modules
+        #   env:
+        #     TOKEN: ${{ secrets.BOT_TOKEN }}
+        #     USERNAME: ${{ secrets.BOT_USERNAME }}
+        #   run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
 
         - name: Install dependencies
           run: |
