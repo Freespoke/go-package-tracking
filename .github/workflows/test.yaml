@@ -13,15 +13,7 @@ jobs:
     test:
         name: go test
         runs-on: ubuntu-latest
-        # env:
-        #     GOPRIVATE: "dev.freespoke.com,github.com/Freespoke"
         steps:
-            # - name: Configure git for private modules
-            #   env:
-            #       TOKEN: ${{ secrets.BOT_TOKEN }}
-            #       USERNAME: ${{ secrets.BOT_USERNAME }}
-            #   run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
-
             - uses: actions/checkout@v3
 
             - uses: actions/setup-go@v4
