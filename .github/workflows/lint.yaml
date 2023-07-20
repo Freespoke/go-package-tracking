@@ -12,13 +12,13 @@ jobs:
             go-version-file: "./go.mod"
             cache: true
 
-        # - name: Restore Cache
-        #   id: cache-precommit-restore
-        #   uses: actions/cache/restore@v3
-        #   with:
-        #     path: |
-        #         ~/.cache/go-package-tracking
-        #     key: pre-commit|${{ hashFiles('**/go.sum') }}
+        - name: Restore Cache
+          id: cache-precommit-restore
+          uses: actions/cache/restore@v3
+          with:
+            path: |
+                ~/.cache/go-package-tracking
+            key: pre-commit|${{ hashFiles('**/go.sum') }}
 
         - name: Configure git for private modules
           env:
@@ -36,13 +36,13 @@ jobs:
           env:
             SKIP: nbdev_clean,golangci-lint
 
-        # - name: Save Cache
-        #   id: cache-precommit-save
-        #   uses: actions/cache/save@v3
-        #   with:
-        #     path: |
-        #         ~/.cache/go-package-tracking
-        #     key: pre-commit|${{ hashFiles('**/go.sum') }}
+        - name: Save Cache
+          id: cache-precommit-save
+          uses: actions/cache/save@v3
+          with:
+            path: |
+                ~/.cache/go-package-tracking
+            key: pre-commit|${{ hashFiles('**/go.sum') }}
     lint:
         name: golangci-lint
         runs-on: ubuntu-latest
