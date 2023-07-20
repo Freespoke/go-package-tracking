@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-merge-conflict
+  - repo: https://github.com/Bahjat/pre-commit-golang
+    rev: v1.0.3
+    hooks:
+    #   - id: go-vet
+      - id: go-lint
+    #   - id: go-err-check
+      - id: go-static-check
+      - id: golangci-lint
+        args: [--config=.golangci.yml]
+      - id: go-ruleguard # requires https://github.com/quasilyte/go-ruleguard
+        args: [lint.go]
+  - repo: https://github.com/yoheimuta/protolint
+    rev: v0.45.0
+    hooks:
+      - id: protolint
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.1
+    hooks:
+      - id: gitleaks

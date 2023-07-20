@@ -1,0 +1,64 @@
+name: lint
+on: [pull_request]
+jobs:
+    pre-commit:
+        name: precommit
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+
+        - uses: actions/setup-go@v4
+          with:
+            go-version-file: "./go.mod"
+            cache: true
+
+        - name: Restore Cache
+          id: cache-precommit-restore
+          uses: actions/cache/restore@v3
+          with:
+            path: |
+                ~/.cache/pre-commit/
+            key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
+
+        - name: Configure git for private modules
+          env:
+            TOKEN: ${{ secrets.BOT_TOKEN }}
+            USERNAME: ${{ secrets.BOT_USERNAME }}
+          run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
+
+        - name: Install dependencies
+          run: |
+            go version
+            go install github.com/kisielk/errcheck@latest
+            go install honnef.co/go/tools/cmd/staticcheck@latest
+
+        - uses: pre-commit/action@v3.0.0
+          env:
+            SKIP: golangci-lint
+
+        - name: Save Cache
+          id: cache-precommit-save
+          uses: actions/cache/save@v3
+          with:
+            path: |
+                ~/.cache/pre-commit/
+            key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
+
+    lint:
+        name: golangci-lint
+        runs-on: ubuntu-latest
+        env:
+            GOPRIVATE: "dev.freespoke.com,github.com/Freespoke"
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-go@v4
+              with:
+                  go-version-file: "./go.mod"
+                  cache: true
+            - run: go get ./...
+            - name: golangci-lint
+              uses: golangci/golangci-lint-action@v3
+              with:
+                  version: latest
+                  skip-go-installation: true
+                  args: --timeout=5m
