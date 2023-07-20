@@ -17,8 +17,14 @@ jobs:
           uses: actions/cache/restore@v3
           with:
             path: |
-                ~/.cache/go-package-tracking/pre-commit/
-            key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
+                ~/.cache/go-package-tracking
+            key: pre-commit|${{ hashFiles('**/go.sum') }}
+
+        - name: Configure git for private modules
+          env:
+              TOKEN: ${{ secrets.BOT_TOKEN }}
+              USERNAME: ${{ secrets.BOT_USERNAME }}
+          run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
 
         - name: Install dependencies
           run: |
@@ -35,8 +41,8 @@ jobs:
           uses: actions/cache/save@v3
           with:
             path: |
-                ~/.cache/go-package-tracking/pre-commit/
-            key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
+                ~/.cache/go-package-tracking
+            key: pre-commit|${{ hashFiles('**/go.sum') }}
     lint:
         name: golangci-lint
         runs-on: ubuntu-latest
