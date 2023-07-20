@@ -1,4 +1,2 @@
-dev.freespoke.com/core v1.32.1 h1:CsBte33KEvr1sqskj7OxzMa0cPx/v2yS00qrkNAR4wU=
-dev.freespoke.com/core v1.32.1/go.mod h1:JgO6cuBfFPsZs/bsTGnUrB5NREnIM3V5O1bSHLtH4Ss=
 github.com/jkeen/tracking_number_data v1.5.1-0.20230616035449-df8e622df66a h1:WOB36UWMjgNbYfl1W78qLD2ctlMpiPUi67mFEtmEnjA=
 github.com/jkeen/tracking_number_data v1.5.1-0.20230616035449-df8e622df66a/go.mod h1:YCA+QVfVYPRcbqBED45eTDX5wm9oDMa3Y4F5+buXda4=

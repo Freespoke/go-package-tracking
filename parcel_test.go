@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"dev.freespoke.com/core/pkg/parcel"
+	parcel "dev.freespoke.com/go-package-tracking"
 	"dev.freespoke.com/go-package-tracking/internal"
 )
 
