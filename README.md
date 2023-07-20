@@ -1,6 +1,8 @@
 # go-package-tracking
 
-A Go package utilizing the [jkeen tracking number data](https://github.com/jkeen/tracking_number_data).
+[![Go Reference](https://pkg.go.dev/badge/dev.freespoke.com/go-package-tracking.svg)](https://pkg.go.dev/dev.freespoke.com/go-package-tracking)
+
+A go package for matching tracking numbers to couriers, or for discovering tracking numbers in text.
 
 ## Install
 
@@ -31,6 +33,10 @@ for k, v := range tracks {
     }
 }
 ```
+
+## Resources
+
+[jkeen tracking number data](https://github.com/jkeen/
 
 ## Notes
 

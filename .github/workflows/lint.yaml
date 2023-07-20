@@ -7,8 +7,6 @@ jobs:
         steps:
         - uses: actions/checkout@v3
 
-        - uses: actions/setup-python@v3
-
         - uses: actions/setup-go@v4
           with:
             go-version-file: "./go.mod"
@@ -19,14 +17,8 @@ jobs:
           uses: actions/cache/restore@v3
           with:
             path: |
-                ~/.cache/pre-commit/
+                ~/.cache/go-package-tracking/pre-commit/
             key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
-
-        - name: Configure git for private modules
-          env:
-            TOKEN: ${{ secrets.BOT_TOKEN }}
-            USERNAME: ${{ secrets.BOT_USERNAME }}
-          run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
 
         - name: Install dependencies
           run: |
@@ -43,7 +35,7 @@ jobs:
           uses: actions/cache/save@v3
           with:
             path: |
-                ~/.cache/pre-commit/
+                ~/.cache/go-package-tracking/pre-commit/
             key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
     lint:
         name: golangci-lint
@@ -51,11 +43,6 @@ jobs:
         env:
             GOPRIVATE: "dev.freespoke.com,github.com/Freespoke"
         steps:
-            - name: Configure git for private modules
-              env:
-                  TOKEN: ${{ secrets.BOT_TOKEN }}
-                  USERNAME: ${{ secrets.BOT_USERNAME }}
-              run: git config --global url."https://${USERNAME}:${TOKEN}@github.com".insteadOf "https://github.com"
             - uses: actions/checkout@v3
             - uses: actions/setup-go@v4
               with:
