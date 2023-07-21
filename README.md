@@ -36,7 +36,7 @@ for k, v := range tracks {
 
 ## Resources
 
-[jkeen tracking number data](https://github.com/jkeen/
+* [tracking number data](https://github.com/jkeen/tracking_number_data)
 
 ## Notes
 
