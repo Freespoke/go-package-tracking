@@ -6,6 +6,7 @@ import (
 
 	parcel "dev.freespoke.com/go-package-tracking"
 	"dev.freespoke.com/go-package-tracking/internal"
+	"github.com/stretchr/testify/assert"
 )
 
 // Testing for all positive and negative test cases embedded in the shipping
@@ -55,4 +56,8 @@ func TestAllServices(t *testing.T) {
 			})
 		}
 	}
+}
+
+func TestServices(t *testing.T) {
+	assert.EqualValues(t, parcel.Services(), internal.Services)
 }

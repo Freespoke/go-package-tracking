@@ -16,6 +16,12 @@ var (
 	ErrNoServices = errors.New("no tracking services loaded")
 )
 
+type Service = internal.Service
+
+func Services() []Service {
+	return internal.Services
+}
+
 // Tracking contains results extracted from a valid tracking number.
 type Tracking struct {
 	// Always returned
